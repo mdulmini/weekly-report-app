@@ -28,6 +28,7 @@ async function api(path, { method = 'GET', body, token } = {}) {
 export const registerUser = (payload) => api('/auth/register', { method: 'POST', body: payload });
 export const loginUser = (payload) => api('/auth/login', { method: 'POST', body: payload });
 export const getMe = (token) => api('/auth/me', { token });
+export const getTeamMembers = (token) => api('/auth/members', { token });
 
 // --- Projects ---
 export const getProjects = (token) => api('/projects', { token });

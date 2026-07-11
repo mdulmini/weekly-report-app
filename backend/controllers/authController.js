@@ -91,4 +91,16 @@ const getMe = async (req, res) => {
   });
 };
 
-module.exports = { register, login, getMe };
+// @route  GET /api/auth/members
+// @access Private (manager only) - used to populate the "filter by member"
+// dropdown on the team dashboard.
+const getTeamMembers = async (req, res) => {
+  try {
+    const members = await User.find({ role: 'member' }).select('name email');
+    res.status(200).json({ members });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error fetching team members', error: error.message });
+  }
+};
+
+module.exports = { register, login, getMe, getTeamMembers };
