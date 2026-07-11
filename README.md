@@ -51,7 +51,7 @@ weekly-report-app/
 
 ### 2. Clone and install
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/mdulmini/weekly-report-app.git>
 cd weekly-report-app
 
 cd backend && npm install
@@ -125,9 +125,6 @@ The AI assistant only receives **submitted** reports (never drafts), and only se
 
 ## Known Limitations / Future Improvements
 - Project creation currently has no dedicated UI (tested via API); a manager-facing "Manage Projects" page would be a natural next addition
-- Submission "late" status uses a simple fixed-day threshold rather than configurable per-team deadlines
-- No file/link attachment upload for reports beyond a plain-text notes field
-- No email notifications for pending/late submissions
 
 ## License
 Built for educational/assignment purposes.
