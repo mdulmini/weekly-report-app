@@ -10,6 +10,8 @@ import SubmissionStatusChart from '../../components/SubmissionStatusChart';
 import TasksTrendChart from '../../components/TasksTrendChart';
 import WorkloadChart from '../../components/WorkloadChart';
 import ActivityFeed from '../../components/ActivityFeed';
+import TeamSummaryCard from '../../components/TeamSummaryCard';
+import ChatWidget from '../../components/ChatWidget';
 import { getProjects, getTeamMembers, getTeamReports, getSubmissionStatus } from '../../lib/api';
 import { getMondayOfWeek, shiftWeek, formatWeekLabel } from '../../lib/dateUtils';
 
@@ -146,6 +148,7 @@ export default function DashboardPage() {
           <div className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>
         )}
 
+        {/* Summary metrics */}
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <StatCard
             label="Submitted this week"
@@ -167,10 +170,12 @@ export default function DashboardPage() {
           />
         </div>
 
+        {/* Filters (apply to charts + activity feed below, not the weekly status card above) */}
         <div className="mt-6">
           <FilterBar members={members} projects={projects} filters={filters} onChange={setFilters} />
         </div>
 
+        {/* Charts */}
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
             <h2 className="font-display font-semibold text-ink">Submission status this week</h2>
@@ -197,6 +202,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Activity feed */}
         <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
           <h2 className="font-display font-semibold text-ink">Recent activity</h2>
           <p className="mt-0.5 text-xs text-ink/40">Latest submitted reports in the current filter</p>
@@ -204,7 +210,15 @@ export default function DashboardPage() {
             {loading ? <p className="text-sm text-ink/40">Loading…</p> : <ActivityFeed reports={reports} />}
           </div>
         </div>
+
+        {/* AI weekly summary */}
+        <div className="mt-6">
+          <TeamSummaryCard token={token} weekStartDate={currentWeek} />
+        </div>
       </main>
+
+      {/* Floating AI chat assistant */}
+      <ChatWidget token={token} />
     </div>
   );
 }

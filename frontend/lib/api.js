@@ -48,4 +48,10 @@ export const getTeamReports = (token, query = '') => api(`/reports/team${query}`
 export const getSubmissionStatus = (token, weekStartDate) =>
   api(`/reports/team/status?weekStartDate=${weekStartDate}`, { token });
 
+// --- AI Assistant (manager only) ---
+export const askAssistant = (token, payload) =>
+  api('/ai/chat', { method: 'POST', body: payload, token });
+export const generateTeamSummary = (token, payload) =>
+  api('/ai/summary', { method: 'POST', body: payload, token });
+
 export default api;
