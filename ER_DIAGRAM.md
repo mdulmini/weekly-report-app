@@ -1,3 +1,6 @@
+# Entity Relationship Diagram — Weekly Report & Team Dashboard
+
+```mermaid
 erDiagram
     USER ||--o{ REPORT : "submits"
     PROJECT ||--o{ REPORT : "is tagged on"
@@ -42,3 +45,4 @@ erDiagram
         date createdAt
         date updatedAt
     }
+```
